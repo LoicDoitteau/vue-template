@@ -1,7 +1,11 @@
 {
   "name": "template",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "author": {
+    "name": "Loïc Doitteau",
+    "email": "loic.doitteau@gmail.com"
+  },
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
