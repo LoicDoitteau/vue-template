@@ -1,5 +1,7 @@
 # template
 
+Sample VueJS app built with Typescript, Vuetify and I18n
+
 ## Project setup
 ```
 yarn install

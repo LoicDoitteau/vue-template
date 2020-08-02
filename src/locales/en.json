@@ -1,0 +1,19 @@
+{
+  "app": {
+    "name": "Template"
+  },
+  "views": {
+    "home": {
+      "title": "Home"
+    },
+    "about": {
+      "title": "About",
+      "message": "Site made with VueJS, Vuetify, I18n and Typescript"
+    }
+  },
+  "components": {
+    "hello": {
+      "message": "hello, world!"
+    }
+  }
+}
