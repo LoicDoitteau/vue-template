@@ -42,8 +42,9 @@
             icon
             v-bind="attrs"
             v-on="on"
+            style="font-size:28px"
           >
-            <v-icon>mdi-translate</v-icon> {{ lang }}
+            <flag :iso="flag"/>
           </v-btn>
         </template>
 
@@ -54,7 +55,7 @@
               :key="i"
             >
               <v-list-item-content>
-                <v-list-item-title>{{ lang.text }}</v-list-item-title>
+                <v-list-item-title><flag :iso="lang.iso" /> {{ lang.text }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
@@ -90,9 +91,9 @@ export default class App extends Vue {
   ]
   private itemIndex = 0;
 
-  private langs: { text: string; value: string }[] =  [
-    { text: 'English', value: 'en' },
-    { text: 'Français', value: 'fr' },
+  private langs: { text: string; iso: string; value: string }[] =  [
+    { text: 'English', iso: 'gb', value: 'en' },
+    { text: 'Français', iso: 'fr', value: 'fr' },
   ];
   private get langIndex() {
     return this.langs.findIndex(l => l.value === this.$i18n.locale);
@@ -100,8 +101,8 @@ export default class App extends Vue {
   private set langIndex(index) {
     this.$i18n.locale = this.langs[index].value;
   }
-  private get lang(): string {
-    return this.langs[this.langIndex].value;
+  private get flag(): string {
+    return this.langs[this.langIndex].iso;
   }
 }
 </script>
