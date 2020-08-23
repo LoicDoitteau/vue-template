@@ -30,7 +30,7 @@ export default class HelloWorld extends Vue {
   }
 
   private add() {
-    return this.$store.dispatch("increment", { amount: this.increment });
+    return this.$store.dispatch("increment", this.increment);
   }
 }
 </script>

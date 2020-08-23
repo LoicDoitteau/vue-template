@@ -44,18 +44,18 @@
             v-on="on"
             style="font-size:28px"
           >
-            <flag :iso="flag"/>
+            <flag :iso="iso"/>
           </v-btn>
         </template>
 
         <v-list dense nav>
-          <v-list-item-group v-model="langIndex" color="primary">
+          <v-list-item-group v-model="currentLangIndex" color="primary">
             <v-list-item
-              v-for="(lang, i) in langs"
-              :key="i"
+              v-for="(lang, code) in langs"
+              :key="code"
             >
               <v-list-item-content>
-                <v-list-item-title><flag :iso="lang.iso" /> {{ lang.text }}</v-list-item-title>
+                <v-list-item-title><flag :iso="lang.iso" /> {{ lang.name }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
@@ -80,7 +80,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Lang, langs, langsCode, isLang } from '@/models/lang'
 
 @Component
 export default class App extends Vue {
@@ -91,18 +92,38 @@ export default class App extends Vue {
   ]
   private itemIndex = 0;
 
-  private langs: { text: string; iso: string; value: string }[] =  [
-    { text: 'English', iso: 'gb', value: 'en' },
-    { text: 'Français', iso: 'fr', value: 'fr' },
-  ];
-  private get langIndex() {
-    return this.langs.findIndex(l => l.value === this.$i18n.locale);
+  private langs = langs;
+  
+  private get currentLangIndex() {
+    return langsCode.findIndex(code => langs[code] === this.currentLang);
   }
-  private set langIndex(index) {
-    this.$i18n.locale = this.langs[index].value;
+  private set currentLangIndex(index) {
+    const code = langsCode[index];
+    this.currentLang = langs[code];
   }
-  private get flag(): string {
-    return this.langs[this.langIndex].iso;
+
+  private get currentLang(): Lang {
+    return this.$store.getters.currentLang;
+  }
+
+  private set currentLang(lang: Lang) {
+    this.$store.dispatch("changeLang", lang);
+  }
+
+  private get iso(): string {
+    return this.currentLang.iso;
+  }
+
+  @Watch('currentLangIndex')
+  private changeLang()
+  {
+    const code = langsCode[this.currentLangIndex];
+    this.$i18n.locale = this.$vuetify.lang.current = code;
+  }
+
+  private mounted()
+  {
+    if (isLang(navigator.language)) this.currentLang = langs[navigator.language];
   }
 }
 </script>
