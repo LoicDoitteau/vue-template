@@ -49,7 +49,7 @@
         </template>
 
         <v-list dense nav>
-          <v-list-item-group v-model="currentLangIndex" color="primary">
+          <v-list-item-group mandatory v-model="currentLangIndex" color="primary">
             <v-list-item
               v-for="(lang, code) in langs"
               :key="code"
