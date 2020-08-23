@@ -87,7 +87,7 @@ import { Lang, langs, langsCode, isLang } from '@/models/lang'
 export default class App extends Vue {
   private drawer: boolean | null = null;
   private items: object[] = [
-    { view: 'home', icon: 'mdi-home', link: '/' },
+    { view: 'home', icon: 'mdi-image-multiple', link: '/' },
     { view: 'about', icon: 'mdi-help-box', link: '/about' },
   ]
   private itemIndex = 0;

@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Template"
+    "name": "Refixel"
   },
   "views": {
     "home": {
@@ -8,7 +8,7 @@
     },
     "about": {
       "title": "A propos",
-      "message": "Site fait avec VueJS, Vuetify, I18n et Typescript"
+      "message": "Refixel"
     }
   },
   "components": {

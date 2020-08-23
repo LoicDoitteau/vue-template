@@ -1,4 +1,4 @@
-# template
+# Refixel
 
 Sample VueJS app built with Typescript, Vuetify and I18n
 
