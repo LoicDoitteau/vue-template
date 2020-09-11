@@ -1,16 +1,16 @@
 <template>
-  <div class="home">
-    <refixel-canvas/>
+  <div style="width: 100vw; height: calc(100vh - 124px);">
+    <container/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import RefixelCanvas from '@/components/RefixelCanvas.vue';
+import Container from '@/components/Container.vue';
 
 @Component({
   components: {
-    RefixelCanvas
+    Container
   }
 })
 export default class Home extends Vue {
