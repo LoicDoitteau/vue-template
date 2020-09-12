@@ -1,15 +1,22 @@
 <template>
     <div ref="container">
         <div ref="canvas">
+            <filter-card v-for="filter in filters" :key="filter.id" :model="filter" :zoom="transform.k"/>
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Transform } from '@/models/transform'
+import { Transform } from '@/models/transform';
+import { Filter } from '@/models/filter';
+import FilterCard from '@/components/FilterCard.vue';
 
-@Component
+@Component({
+  components: {
+    FilterCard
+  }
+})
 export default class Container extends Vue {
     private container?: HTMLElement;
     private canvas?: HTMLElement;
@@ -18,6 +25,8 @@ export default class Container extends Vue {
     private startTransform?: Transform;
     private startX = 0;
     private startY = 0;
+
+    private filters: Filter[] = [];
 
     private mounted() {
         this.container = this.$refs.container as HTMLElement;
@@ -30,6 +39,7 @@ export default class Container extends Vue {
         window.addEventListener("mousemove", this.mousemove.bind(this));
         this.container.addEventListener("wheel", this.wheel.bind(this));
         this.resize();
+        this.mockData();
     }
 
     private destroyed() {
@@ -96,6 +106,13 @@ export default class Container extends Vue {
 
     private clamp(n: number, min: number, max: number) {
         return Math.max(min, Math.min(n, max));
+    }
+
+    private mockData() {
+        this.filters = [
+            { id: 0, name: 'test1', position: { x: 10, y: 10, k: 0} },
+            { id: 1, name: 'test2', position: { x: 200, y: 200, k: 0} },
+        ]
     }
 }
 </script>
