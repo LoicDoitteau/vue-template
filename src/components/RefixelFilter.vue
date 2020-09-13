@@ -1,7 +1,7 @@
 <template>
-    <div ref="filter" class="mx-auto v-card v-sheet theme--dark" style="max-width: 400px; background-color: rgb(38, 198, 218); border-color: rgb(38, 198, 218);">
+    <div ref="filter" class="mx-auto v-card v-sheet theme--dark secondary" style="width: 400px">
       <v-card-title>
-        <span class="title font-weight-light">{{ title }}</span>
+        <span class="title text-center font-weight-light" style="width: 100%">{{ title }}</span>
       </v-card-title>
 
       <v-card-text class="headline font-weight-bold">
@@ -11,6 +11,14 @@
       <v-card-actions>
         
       </v-card-actions>
+      <v-expansion-panels dark flat>
+        <v-expansion-panel>
+          <v-expansion-panel-header class="secondary">Preview</v-expansion-panel-header>
+          <v-expansion-panel-content eager class="secondary">
+            <refixel-canvas/>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </div>
 </template>
 
@@ -18,9 +26,14 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Transform } from '@/models/transform';
 import { Filter } from '@/models/filter';
+import RefixelCanvas from '@/components/RefixelCanvas.vue';
 
-@Component
-export default class FilterCard extends Vue {
+@Component({
+  components: {
+    RefixelCanvas
+  }
+})
+export default class RefixelFilter extends Vue {
     @Prop({ default: 1 }) private zoom?: number;
     @Prop({ required: true }) private model?: Filter;
 
@@ -85,3 +98,10 @@ export default class FilterCard extends Vue {
     }
 }
 </script>
+
+<style>
+.secondary {
+  background-color: #009688;
+  border-color: #009688;
+}
+</style>

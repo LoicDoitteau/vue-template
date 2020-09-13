@@ -1,7 +1,7 @@
 <template>
     <div ref="container">
         <div ref="canvas">
-            <filter-card v-for="filter in filters" :key="filter.id" :model="filter" :zoom="transform.k"/>
+            <refixel-filter v-for="filter in filters" :key="filter.id" :model="filter" :zoom="transform.k"/>
         </div>
     </div>
 </template>
@@ -10,14 +10,14 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Transform } from '@/models/transform';
 import { Filter } from '@/models/filter';
-import FilterCard from '@/components/FilterCard.vue';
+import RefixelFilter from '@/components/RefixelFilter.vue';
 
 @Component({
   components: {
-    FilterCard
+    RefixelFilter
   }
 })
-export default class Container extends Vue {
+export default class RefixelContainer extends Vue {
     private container?: HTMLElement;
     private canvas?: HTMLElement;
     private moving = false;
@@ -109,10 +109,9 @@ export default class Container extends Vue {
     }
 
     private mockData() {
-        this.filters = [
-            { id: 0, name: 'test1', position: { x: 10, y: 10, k: 0} },
-            { id: 1, name: 'test2', position: { x: 200, y: 200, k: 0} },
-        ]
+        this.filters = Array.from({ length: 9 }, (_, i) => {
+            return { id: i, name: `Filter ${i+1}`, position: { x: (i % 3) * 420, y: Math.floor(i / 3) * 420, k: 0} } as Filter;
+        });
     }
 }
 </script>
