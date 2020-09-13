@@ -26,7 +26,9 @@ export default class RefixelContainer extends Vue {
     private startX = 0;
     private startY = 0;
 
-    private filters: Filter[] = [];
+    private get filters(): Filter[] {
+        return this.$store.getters.filters;
+    }
 
     private mounted() {
         this.container = this.$refs.container as HTMLElement;
@@ -39,7 +41,6 @@ export default class RefixelContainer extends Vue {
         window.addEventListener("mousemove", this.mousemove.bind(this));
         this.container.addEventListener("wheel", this.wheel.bind(this));
         this.resize();
-        this.mockData();
     }
 
     private destroyed() {
@@ -106,12 +107,6 @@ export default class RefixelContainer extends Vue {
 
     private clamp(n: number, min: number, max: number) {
         return Math.max(min, Math.min(n, max));
-    }
-
-    private mockData() {
-        this.filters = Array.from({ length: 9 }, (_, i) => {
-            return { id: i, name: `Filter ${i+1}`, position: { x: (i % 3) * 420, y: Math.floor(i / 3) * 420, k: 0} } as Filter;
-        });
     }
 }
 </script>

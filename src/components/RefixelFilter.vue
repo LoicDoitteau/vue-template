@@ -1,5 +1,5 @@
 <template>
-    <div ref="filter" class="mx-auto v-card v-sheet theme--dark secondary" style="width: 400px">
+    <div ref="filter" class="mx-auto v-card v-sheet theme--dark secondary" style="width: 200px; cursor: pointer">
       <v-card-title>
         <span class="title text-center font-weight-light" style="width: 100%">{{ title }}</span>
       </v-card-title>
@@ -98,10 +98,3 @@ export default class RefixelFilter extends Vue {
     }
 }
 </script>
-
-<style>
-.secondary {
-  background-color: #009688;
-  border-color: #009688;
-}
-</style>

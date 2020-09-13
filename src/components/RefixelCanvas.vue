@@ -1,5 +1,5 @@
 <template>
-    <canvas class="fill" ref="canvas"/>
+    <canvas class="fill canvas" ref="canvas"/>
 </template>
 
 <script lang="ts">
@@ -23,5 +23,9 @@ export default class RefixelCanvas extends Vue {
 .fill {
   width: 100%;
   height: 100%;
+}
+
+.canvas {
+    border-radius: 5px;
 }
 </style>
