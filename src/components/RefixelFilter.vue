@@ -4,13 +4,6 @@
         <span class="title text-center font-weight-light" style="width: 100%">{{ title }}</span>
       </v-card-title>
 
-      <v-card-text class="headline font-weight-bold">
-        
-      </v-card-text>
-
-      <v-card-actions>
-        
-      </v-card-actions>
       <v-expansion-panels dark flat>
         <v-expansion-panel>
           <v-expansion-panel-header class="secondary">Preview</v-expansion-panel-header>
